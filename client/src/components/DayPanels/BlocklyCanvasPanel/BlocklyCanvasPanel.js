@@ -27,6 +27,14 @@ export default function BlocklyCanvasPanel(props) {
     const dayRef = useRef(null);
     const { SubMenu } = Menu;
 
+    const testFunc = () => {
+        let canvas = document.getElementById('blockly-canvas');
+        let toolbox = document.getElementsByClassName('blocklyToolboxDiv')[0];
+        toolbox.style.left = null;
+        toolbox.style.top = null;
+        canvas.prepend(toolbox);
+    }
+
     const setWorkspace = () =>
         workspaceRef.current = window.Blockly.inject('blockly-canvas',
             { toolbox: document.getElementById('toolbox') }
@@ -291,6 +299,9 @@ export default function BlocklyCanvasPanel(props) {
                         <Spin tip="Compiling Code Please Wait..." className="compilePop" spinning={selectedCompile}>
                             
                             <Row align='middle' justify='end' id='description-container' >
+                                    <button onClick={testFunc}>
+                                        Test    
+                                    </button>
                                     <Col flex={homePath && handleGoBack ? "60px" : "30px"}>
                                     <Row>
                                         {homePath ? 
