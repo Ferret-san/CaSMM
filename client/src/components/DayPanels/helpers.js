@@ -6,12 +6,12 @@ import {
   updateDay,
 } from '../../Utils/requests';
 import { message } from 'antd';
-
+import * as Blockly from 'blockly/core';
 const AvrboyArduino = window.AvrgirlArduino;
 
 export const setLocalSandbox = (workspaceRef) => {
-  let workspaceDom = window.Blockly.Xml.workspaceToDom(workspaceRef);
-  let workspaceText = window.Blockly.Xml.domToText(workspaceDom);
+  let workspaceDom = Blockly.Xml.workspaceToDom(workspaceRef);
+  let workspaceText = Blockly.Xml.domToText(workspaceDom);
   const localActivity = JSON.parse(localStorage.getItem('sandbox-day'));
 
 
@@ -21,7 +21,6 @@ export const setLocalSandbox = (workspaceRef) => {
 
 // Generates xml from blockly canvas
 export const getXml = (workspaceRef, shouldAlert = true) => {
-  const { Blockly } = window;
 
   let xml = Blockly.Xml.workspaceToDom(workspaceRef);
   let xml_text = Blockly.Xml.domToText(xml);
@@ -31,16 +30,16 @@ export const getXml = (workspaceRef, shouldAlert = true) => {
 
 // Generates javascript code from blockly canvas
 export const getJS = (workspaceRef) => {
-  window.Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-  let code = window.Blockly.JavaScript.workspaceToCode(workspaceRef);
+  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+  let code = Blockly.JavaScript.workspaceToCode(workspaceRef);
   alert(code);
   return code;
 };
 
 // Generates Arduino code from blockly canvas
 export const getArduino = (workspaceRef, shouldAlert = true) => {
-  window.Blockly.Arduino.INFINITE_LOOP_TRAP = null;
-  let code = window.Blockly.Arduino.workspaceToCode(workspaceRef);
+  Blockly.Arduino.INFINITE_LOOP_TRAP = null;
+  let code = Blockly.Arduino.workspaceToCode(workspaceRef);
   if (shouldAlert) alert(code);
   return code;
 };
@@ -54,8 +53,8 @@ export const compileArduinoCode = async (
 ) => {
   setSelectedCompile(true);
   const sketch = getArduino(workspaceRef, false);
-  let workspaceDom = window.Blockly.Xml.workspaceToDom(workspaceRef);
-  let workspaceText = window.Blockly.Xml.domToText(workspaceDom);
+  let workspaceDom = Blockly.Xml.workspaceToDom(workspaceRef);
+  let workspaceText = Blockly.Xml.domToText(workspaceDom);
   let path;
   isStudent ? (path = '/submissions') : (path = '/sandbox/submission');
   isStudent ? (day = day) : (day.id = undefined);
@@ -133,14 +132,14 @@ const flashArduino = async (response) => {
 
 // save current workspace
 export const handleSave = async (dayId, workspaceRef) => {
-  let xml = window.Blockly.Xml.workspaceToDom(workspaceRef.current);
-  let xml_text = window.Blockly.Xml.domToText(xml);
+  let xml = Blockly.Xml.workspaceToDom(workspaceRef.current);
+  let xml_text = Blockly.Xml.domToText(xml);
   return await saveWorkspace(dayId, xml_text);
 };
 
 export const handleCreatorSaveDay = async (dayId, workspaceRef, blocksList) => {
-  let xml = window.Blockly.Xml.workspaceToDom(workspaceRef.current);
-  let xml_text = window.Blockly.Xml.domToText(xml);
+  let xml = Blockly.Xml.workspaceToDom(workspaceRef.current);
+  let xml_text = Blockly.Xml.domToText(xml);
 
   console.log('The current blocksList is: ', blocksList);
 

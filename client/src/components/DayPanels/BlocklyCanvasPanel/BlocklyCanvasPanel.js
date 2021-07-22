@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import * as Blockly from 'blockly/core';
 import { Link } from 'react-router-dom';
 import '../DayPanels.less';
 import {
@@ -48,7 +49,7 @@ export default function BlocklyCanvasPanel(props) {
   const { SubMenu } = Menu;
 
   const setWorkspace = () =>
-    (workspaceRef.current = window.Blockly.inject('blockly-canvas', {
+    (workspaceRef.current = Blockly.inject('blockly-canvas', {
       toolbox: document.getElementById('toolbox'),
     }));
 
@@ -75,9 +76,9 @@ export default function BlocklyCanvasPanel(props) {
       } else {
         setLastSavedTime(null);
       }
-      let xml = window.Blockly.Xml.textToDom(toLoad);
+      let xml = Blockly.Xml.textToDom(toLoad);
       if (workspaceRef.current) workspaceRef.current.clear();
-      window.Blockly.Xml.domToWorkspace(xml, workspaceRef.current);
+      Blockly.Xml.domToWorkspace(xml, workspaceRef.current);
       workspaceRef.current.clearUndo();
     } catch (e) {
       message.error('Failed to load save.');
@@ -167,12 +168,12 @@ export default function BlocklyCanvasPanel(props) {
         }
 
         if (onLoadSave) {
-          let xml = window.Blockly.Xml.textToDom(onLoadSave.workspace);
-          window.Blockly.Xml.domToWorkspace(xml, workspaceRef.current);
+          let xml = Blockly.Xml.textToDom(onLoadSave.workspace);
+          Blockly.Xml.domToWorkspace(xml, workspaceRef.current);
           setLastSavedTime(getFormattedDate(onLoadSave.updated_at));
         } else if (day.template) {
-          let xml = window.Blockly.Xml.textToDom(day.template);
-          window.Blockly.Xml.domToWorkspace(xml, workspaceRef.current);
+          let xml = Blockly.Xml.textToDom(day.template);
+          Blockly.Xml.domToWorkspace(xml, workspaceRef.current);
         }
 
         workspaceRef.current.clearUndo();

@@ -11,11 +11,11 @@ import NotFound from "./views/NotFound"
 import StudentLogin from "./views/StudentLogin/StudentLogin";
 import Sandbox from "./views/Sandbox/Sandbox"
 import Day from "./views/Day/Day";
-import Classroom from "./views/Classroom/Classroom"
-import TeacherLogin from "./views/TeacherLogin/TeacherLogin"
-import ContentCreator from './views/ContentCreator/ContentCreator'
-import UnitCreator from './views/ContentCreator/UnitCreator/UnitCreator'
-import UploadBlocks from './views/UploadBlocks/UploadBlocks'
+import Classroom from "./views/Classroom/Classroom";
+import TeacherLogin from "./views/TeacherLogin/TeacherLogin";
+import ContentCreator from './views/ContentCreator/ContentCreator';
+import UnitCreator from './views/ContentCreator/UnitCreator/UnitCreator';
+import UploadBlocks from './views/UploadBlocks/UploadBlocks';
 
 const App = () => {
     let history = useHistory();
