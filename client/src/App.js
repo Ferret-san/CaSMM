@@ -16,6 +16,9 @@ import TeacherLogin from "./views/TeacherLogin/TeacherLogin";
 import ContentCreator from './views/ContentCreator/ContentCreator';
 import UnitCreator from './views/ContentCreator/UnitCreator/UnitCreator';
 import UploadBlocks from './views/UploadBlocks/UploadBlocks';
+import './blockly/customblocks';
+import './blockly/arduino_compressed';
+import './blockly/en';
 
 const App = () => {
     let history = useHistory();

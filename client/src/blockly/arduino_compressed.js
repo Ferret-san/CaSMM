@@ -92,12 +92,18 @@ Blockly.Arduino.addDeclaration = function(a, b) {
 };
 Blockly.Arduino.addVariable = function(a, b, c) {
     var d = !1;
-    if (c || void 0 === Blockly.Arduino.variables_[a]) Blockly.Arduino.variables_[a] = b, d = !0;
+    if (c || void 0 === Blockly.Arduino.variables_[a]) {
+        Blockly.Arduino.variables_[a] = b;
+        d = !0;
+    }
     return d
 };
 Blockly.Arduino.addSetup = function(a, b, c) {
     var d = !1;
-    if (c || void 0 === Blockly.Arduino.setups_[a]) Blockly.Arduino.setups_[a] = b, d = !0;
+    if (c || void 0 === Blockly.Arduino.setups_[a]) {
+        Blockly.Arduino.setups_[a] = b;
+        d = !0;
+     }
     return d
 };
 Blockly.Arduino.addFunction = function(a, b) {
